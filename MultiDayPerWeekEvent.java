@@ -1,35 +1,21 @@
-/**
- * 
- */
-
 import java.util.GregorianCalendar;
 
 import calendar.MeetingCalendar;
 
-/**
- * 
- */
-public class WeeklyEvent extends CalendarEvent
+public class MultiDayPerWeekEvent extends CalendarEvent
 {
 	private GregorianCalendar repeatUntil;
-	/**
-	 * @param desc
-	 * @param loc
-	 * @param start
-	 * @param end
-	 */
-	
-	public WeeklyEvent(String desc, String loc, GregorianCalendar start, GregorianCalendar end, GregorianCalendar repeat)
+	private int[] days;
+	public MultiDayPerWeekEvent(String desc, String loc, GregorianCalendar start, GregorianCalendar end, GregorianCalendar repeat, int[] days)
 	{
 		super(desc, loc, start, end);
 		// TODO Auto-generated constructor stub
-	} 
+	}
 
 	@Override
 	public void scheduleEvent(MeetingCalendar calendar)
 	{
 		// TODO Auto-generated method stub
-		
 
 	}
 
@@ -43,5 +29,14 @@ public class WeeklyEvent extends CalendarEvent
 		this.repeatUntil = repeatUntil;
 	}
 
+	public int[] getDays()
+	{
+		return days;
+	}
+
+	public void setDays(int[] days)
+	{
+		this.days = days;
+	}
 
 }
