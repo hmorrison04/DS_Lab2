@@ -14,6 +14,10 @@ public abstract class CalendarEvent
 	public CalendarEvent(String desc, String loc, GregorianCalendar start, GregorianCalendar end)
 	{
 		// TODO Auto-generated constructor stub
+		this.description = desc;
+		this.location = loc;
+		this.startTime = start;
+		this.endTime = end;
 	}
 
 	public abstract void scheduleEvent(MeetingCalendar calendar);

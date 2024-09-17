@@ -4,6 +4,7 @@
 
 import java.util.GregorianCalendar;
 
+import calendar.Meeting;
 import calendar.MeetingCalendar;
 
 /**
@@ -27,7 +28,12 @@ public class PriorityEvent extends CalendarEvent
 	@Override
 	public void scheduleEvent(MeetingCalendar calendar)
 	{
-		// TODO Auto-generated method stub
+		Meeting b = new Meeting(getDescription(),getLocation(),getStartTime(),getEndTime());
+		calendar.addMeeting(b);
+		if(calendar.doesMeetingConflict(b))
+		{
+			calendar.addMeeting(b,true);
+		}
 
 	}
 
