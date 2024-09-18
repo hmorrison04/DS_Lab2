@@ -1,5 +1,7 @@
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import calendar.Meeting;
 import calendar.MeetingCalendar;
 
 public class MultiDayPerWeekEvent extends CalendarEvent
@@ -9,14 +11,43 @@ public class MultiDayPerWeekEvent extends CalendarEvent
 	public MultiDayPerWeekEvent(String desc, String loc, GregorianCalendar start, GregorianCalendar end, GregorianCalendar repeat, int[] days)
 	{
 		super(desc, loc, start, end);
-		// TODO Auto-generated constructor stub
+		this.repeatUntil = repeat;
+		this.days = days;
 	}
 
 	@Override
 	public void scheduleEvent(MeetingCalendar calendar)
 	{
-		// TODO Auto-generated method stub
+		Meeting d = new Meeting(getDescription(),getLocation(),getStartTime(),getEndTime());
+		calendar.addMeeting(d);
 
+		GregorianCalendar a = (GregorianCalendar) getStartTime().clone();
+		GregorianCalendar b = (GregorianCalendar) getEndTime().clone();
+		
+		
+		boolean isInArray = false;
+		while(a.compareTo(repeatUntil) < 0)
+		{ 
+			for(int i = 0; i < days.length; i++)
+			{
+				//System.out.println(Calendar.DAY_OF_WEEK);
+				//System.out.println(days[i]);
+				if(Calendar.DAY_OF_WEEK == days[i]) 
+				{
+					isInArray = true;
+					
+				}
+			}
+			if(isInArray)
+			{
+				Meeting x = new Meeting(getDescription(), getLocation(),a,b);
+				calendar.addMeeting(x);
+			}
+			a.add(Calendar.DAY_OF_MONTH, 1);
+			b.add(Calendar.DAY_OF_MONTH, 1);
+			isInArray = false;
+			
+		}
 	}
 
 	public GregorianCalendar getRepeatUntil()
