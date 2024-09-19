@@ -24,31 +24,35 @@ public class MultiDayPerWeekEvent extends CalendarEvent
 		GregorianCalendar a = (GregorianCalendar) getStartTime().clone();
 		GregorianCalendar b = (GregorianCalendar) getEndTime().clone();
 		
-		
+	
 		boolean isInArray = false;
+		
+		
 		while(a.compareTo(repeatUntil) < 0)
 		{ 
 			for(int i = 0; i < days.length; i++)
 			{
-				//System.out.println(Calendar.DAY_OF_WEEK);
-				//System.out.println(days[i]);
-				if(Calendar.DAY_OF_WEEK == days[i]) 
+				if((a.get(Calendar.DAY_OF_WEEK)) == days[i]) 
 				{
 					isInArray = true;
-					
-				}
+				
+				}	
 			}
+			
 			if(isInArray)
 			{
-				Meeting x = new Meeting(getDescription(), getLocation(),a,b);
-				calendar.addMeeting(x);
+				Meeting e = new Meeting(getDescription(), getLocation(),a,b);
+				calendar.addMeeting(e);
 			}
+		
+			
 			a.add(Calendar.DAY_OF_MONTH, 1);
 			b.add(Calendar.DAY_OF_MONTH, 1);
+			
 			isInArray = false;
 			
 		}
-	}
+	 }
 
 	public GregorianCalendar getRepeatUntil()
 	{
